@@ -68,3 +68,28 @@ class FincaModelTest(TestCase):
     def test_string_representation(self):
         """Verifica la representación en string de la Finca"""
         self.assertEqual(str(self.finca), "Finca 123ABC - Bogotá")
+
+#Pruebas Unitaria HU-1: Registro de Productos en el Inventario
+
+class CategoriaModelTest(TestCase):
+
+    def test_creacion_categoria(self):
+        categoria = Categoria.objects.create(nombre="Plantas", descripcion="Categoría de plantas.")
+        self.assertEqual(categoria.nombre, "Plantas")
+
+    def test_nombre_unico(self):
+        Categoria.objects.create(nombre="Plantas")
+        with self.assertRaises(Exception):
+            Categoria.objects.create(nombre="Plantas")
+
+class ProductoModelTest(TestCase):
+
+    def test_creacion_producto(self):
+        categoria = Categoria.objects.create(nombre="Plantas")
+        producto = Producto.objects.create(nombre="Helecho", categoria=categoria, precio=5000, cantidad=10)
+        self.assertEqual(producto.nombre, "Helecho")
+
+    def test_relacion_producto_categoria(self):
+        categoria = Categoria.objects.create(nombre="Plantas")
+        producto = Producto.objects.create(nombre="Helecho", categoria=categoria, precio=5000, cantidad=10)
+        self.assertEqual(producto.categoria.nombre, "Plantas")

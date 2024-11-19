@@ -10,7 +10,7 @@ class ProductoForm(forms.ModelForm):
         fields = ['nombre', 'descripcion', 'categoria', 'precio', 'cantidad']
 
 
-
+#Vistas HU-1: Registro de Productos en el Inventario
 
 
 def registrar_producto(request):
@@ -26,3 +26,8 @@ def registrar_producto(request):
 def listar_productos(request):
     productos = Producto.objects.all()
     return render(request, 'productos/listar_productos.html', {'productos': productos})
+
+
+def listar_categorias(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'categorias/listar_categorias.html', {'categorias': categorias})
