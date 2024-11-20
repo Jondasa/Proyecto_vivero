@@ -1,5 +1,5 @@
 from django import forms
-from .models import Vivero, ProductoControlHongo, ProductoControlPlaga, ProductoControlFertilizante, Labor
+from models import Vivero, ProductoControlHongo, ProductoControlPlaga, ProductoControlFertilizante, Labor
 
 class ViveroForm(forms.ModelForm):
     class Meta:
