@@ -1,0 +1,29 @@
+<h1>Lista de Viveros</h1>
+<a href="{% url 'crear_vivero' %}">Crear Nuevo Vivero</a>
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Tipo de Cultivo</th>
+        <th>Finca</th>
+        <th>Acciones</th>
+    </tr>
+    {% for vivero in viveros %}
+    <tr>
+        <td>{{ vivero.codigo }}</td>
+        <td>{{ vivero.tipo_cultivo }}</td>
+        <td>{{ vivero.finca }}</td>
+        <td>
+            <a href="{% url 'editar_vivero' vivero.id %}">Editar</a>
+            <a href="{% url 'eliminar_vivero' vivero.id %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<h1>Crear Vivero</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
